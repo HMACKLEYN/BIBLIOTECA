@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteca de la Creatividad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 0 20px;
+            margin: 0 auto;
+            height: 100vh;
+            overflow-y: scroll;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .content {
+            padding: 40px 0;
+        }
+        
+        /* Resto de los estilos CSS */
+        
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            width: calc(33.33% - 10px);
+            max-width: 300px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .card-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Estilos de la migaja de pan */
+        
+        .breadcrumb {
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .breadcrumb::before {
+            content: "/";
+            margin: 0 5px;
+        }
+
+        .breadcrumb span:last-child {
+            font-weight: bold;
+        }
+
+        /* Estilos para el iframe */
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Estilos para las secciones "Sobre nosotros", "Enlaces rápidos" y "Contacto" */
+
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .section-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .section-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            width: calc(33.33% - 10px);
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .section-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .section-card-content {
+            padding: 20px;
+        }
+
+        .section-card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section-card-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Estilos para el pie de página */
+
+        .footer {
+            background-color: #f5f5f5;
+            padding: 20px 0;
+            margin-top: 40px;
+            text-align: center;
+            color: #666;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            text-align: left;
+        }
+
+        .footer-section.about h2,
+        .footer-section.links h2,
+        .footer-section.contact-form h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .footer-section.about p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .footer-section.contact-form form {
+            margin-top: 20px;
+        }
+
+        .footer-section.contact-form input,
+        .footer-section.contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .footer-section.contact-form .btn {
+            background-color: #666;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <img src="Urban Fashion Img/logo.png" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="#" class="menu-item">Inicio</a></li>
+                    <li><a href="about.html" class="menu-item">Nosotros</a></li>
+                    <li><a href="#" class="menu-item">Proyectos</a></li>
+                    <li><a href="#" class="menu-item">Blog</a></li>
+                </ul>
+            </nav>
+            <img src="Urban Fashion Img/cart.png" class="cart">
+        </div>
+
+        <div class="content">
+            <div class="breadcrumb">
+                <a href="#">Inicio</a>
+                <span>Biblioteca de la Creatividad</span>
+            </div>
+            <a href="register.html" class="collections-link">¡Conviértete en héroe!</a>
+            <h1 class="title">Biblioteca<br><span>de la <strong>Creatividad</strong></span></h1>
+            <p>Construyendo futuros brillantes</p>
+
+            <div class="arrow-icons">
+                <img src="Urban Fashion Img/back-arrow.png">
+                <img src="Urban Fashion Img/next-arrow.png">
+            </div>
+
+            <img src="Urban Fashion Img/img.png" class="feature-img">
+            
+            <div class="social-links">
+                <button onclick="window.location.href = 'https://www.facebook.com';" class="social-button">FACEBOOK</button>
+                <button onclick="window.location.href = 'https://www.instagram.com';" class="social-button">INSTAGRAM</button>
+                <button onclick="window.location.href = 'https://www.youtube.com';" class="social-button">YOUTUBE</button>
+            </div>
+            
+            <div class="iframe-container">
+                <iframe src="https://www.youtube.com/embed/TTNTnQkXMeQ" frameborder="50" allowfullscreen></iframe>
+            </div>
+
+            <div class="iframe-container">
+                <iframe src="https://www.youtube.com/watch?v=AxVr7akXz94&feature=youtu.be" frameborder="50" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="additional-content">
+                <div class="section-card-container">
+                    <div class="section-card">
+                        <!-- Tarjeta 1 -->
+                        <div class="section-card-image">
+                            <img src="Urban Fashion Img/1.png" alt="Image 1">
+                        </div>
+                        <div class="section-card-content">
+                            <h2 class="section-card-title">Love Sport</h2>
+                            <p class="section-card-description">Busca promover el amor por el deporte en los niños como mecanismo para
+                                aprovechar sus talentos y el tiempo libre en actividades que beneficien a su
+                                entorno.</p>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <!-- Tarjeta 2 -->
+                        <div class="section-card-image">
+                            <img src="Urban Fashion Img/2.png" alt="Image 2">
+                        </div>
+                        <div class="section-card-content">
+                            <h2 class="section-card-title">Green Earth</h2>
+                            <p class="section-card-description">Busca enseñar la importancia de cuidar y proteger el medio ambiente
+                                mediante actividades didácticas y la creación de proyectos ecológicos.</p>
+                        </div>
+                    </div>
+
+                    <div class="section-card">
+                        <!-- Tarjeta 3 -->
+                        <div class="section-card-image">
+                            <img src="Urban Fashion Img/3.png" alt="Image 3">
+                        </div>
+                        <div class="section-card-content">
+                            <h2 class="section-card-title">Tech Lab</h2>
+                            <p class="section-card-description">Brinda a los niños la oportunidad de explorar y aprender sobre la
+                                tecnología y la programación a través de talleres y actividades interactivas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Sobre nosotros</h2>
+                    <div class="section-content">
+                        <div class="section-card">
+                            <div class="section-card-image">
+                                <img src="Urban Fashion Img/MISION.png" alt="About 1">
+                            </div>
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Conóce a Iván Triana </h3>
+                                <p class="section-card-description">La misión de nuestra fundación es empoderar a jóvenes emprendedores y brindarles las herramientas, el apoyo y los recursos necesarios para convertir sus ideas en negocios exitosos. Nos dedicamos a fomentar el espíritu emprendedor, impulsar la innovación y promover el desarrollo económico sostenible en nuestra comunidad.</p>
+                            </div>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-card-image">
+                                <img src="Urban Fashion Img/EQUIPO.jpg" alt="About 2">
+                            </div>
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Nuestro equipo</h3>
+                                <p class="section-card-description">El equipo de trabajo de una fundación que ayuda a jóvenes a emprender puede estar compuesto por profesionales con diferentes roles y habilidades complementarias. Aquí tienes una posible descripción de los roles comunes en dicho equipo:
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Más de nosotros</h2>
+                    <div class="section-content">
+                        <div class="section-card">
+                            <div class="section-card-image">
+                                <img src="Urban Fashion Img/EVENTOS.png" alt="Quick Links 1">
+                            </div>
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Eventos</h3>
+                                <p class="section-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                                    fermentum
+                                    tristique leo, nec ultricies odio sollicitudin sed.</p>
+                            </div>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-card-image">
+                                <img src="Urban Fashion Img/NOTICIAS.jpg" alt="Quick Links 2">
+                            </div>
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Noticias</h3>
+                                <p class="section-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                                    fermentum
+                                    tristique leo, nec ultricies odio sollicitudin sed.</p>
+                            </div>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-card-image">
+                                <img src="Urban Fashion Img/RECURSOS.jpg" alt="Quick Links 3">
+                            </div>
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Recursos</h3>
+                                <p class="section-card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+                                    fermentum
+                                    tristique leo, nec ultricies odio sollicitudin sed.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <h2 class="section-title">Contáctanos</h2>
+                    <div class="section-content">
+                        <div class="section-card">
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Información de contacto</h3>
+                                <p class="section-card-description">Biblioteca de la Creatividad</p>
+                                <p class="section-card-description">Dirección: Ciudad Bolivar</p>
+                                <p class="section-card-description">Teléfono: +1 123 456 7890</p>
+                                <p class="section-card-description">Email: info@Bibliotecadelacreatividad.com</p>
+                            </div>
+                        </div>
+                        <div class="section-card">
+                            <div class="section-card-content">
+                                <h3 class="section-card-title">Formulario de contacto</h3>
+                                <form>
+                                    <input type="text" placeholder="Nombre" required>
+                                    <input type="email" placeholder="Correo electrónico" required>
+                                    <textarea placeholder="Mensaje" required></textarea>
+                                    <button class="btn" type="submit">Enviar</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-section about">
+                    <h2>Sobre nosotros</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+                <div class="footer-section links">
+                    <h2>Enlaces útiles</h2>
+                    <ul>
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="about.html">Nosotros</a></li>
+                        <li><a href="#">Proyectos</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section contact-form">
+                    <h2>Contacto</h2>
+                    <form>
+                        <input type="text" placeholder="Nombre" required>
+                        <input type="email" placeholder="Correo electrónico" required>
+                        <textarea placeholder="Mensaje" required></textarea>
+                        <button class="btn" type="submit">Enviar</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; Biblioteca de la Creatividad. Todos los derechos reservados.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
